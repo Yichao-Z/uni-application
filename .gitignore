@@ -1,0 +1,4 @@
+.vscode/ 
+AppData/ 
+*.log 
+.DS_Store 
