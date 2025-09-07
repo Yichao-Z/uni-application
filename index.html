@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>Introduction of ZHANG Yichao / 張一超（ZHANG Yichao）さんに関する紹介</title>
+    <style>
+        header h1 {
+            text-align: left;
+            font-size: 1em;
+            font-weight: bold;
+            margin: 0.08em 0;
+            line-height: 1.08;
+        }
+        .module-title {
+            font-size: 0.92em;
+            font-weight: normal;
+            margin: 0.08em 0;
+            line-height: 1.08;
+        }
+        .nav-bar {
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+        .nav-btn {
+            display: block;
+            width: 100%;
+            max-width: 700px;
+            margin: 0.15em 0 0.15em 0;
+            background: #fff;
+            border: 2px solid #1976d2;
+            border-radius: 2em;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        .nav-btn a {
+            display: block;
+            color: #1976d2;
+            text-decoration: underline;
+            font-weight: normal;
+            padding: 0.35em 1em;
+            font-size: 0.95em;
+            text-align: left;
+            border-radius: 2em;
+            background: transparent;
+        }
+        .nav-btn a:hover {
+            background: #e3f2fd;
+        }
+        .dialog-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.25);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dialog-box {
+            background: #fff;
+            border-radius: 1em;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+            max-width: 95vw;
+            width: 420px;
+            padding: 2em 1.5em 1.5em 1.5em;
+            text-align: left;
+        }
+        .dialog-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            margin-bottom: 1em;
+        }
+        .dialog-btn {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 1em;
+            padding: 0.7em 1em;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .dialog-btn:hover {
+            background: #1565c0;
+        }
+        .dialog-content {
+            margin-bottom: 1.5em;
+            font-size: 0.98em;
+            line-height: 1.5;
+        }
+        .dialog-content.jp {
+            font-size: 0.92em;
+        }
+        .dialog-ok-btn {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 1em;
+            padding: 0.6em 1.5em;
+            font-size: 1em;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- 弹窗对话框 -->
+    <div id="dialog-overlay" class="dialog-overlay">
+        <div class="dialog-box">
+            <div id="dialog-select">
+                <div class="dialog-btns">
+                    <button class="dialog-btn" onclick="showDialog('en')">English Version of the Description<br><span style='font-size:0.95em;'>説明の英語版</span></button>
+                    <button class="dialog-btn" onclick="showDialog('jp')">Japanese Version of the Description<br><span style='font-size:0.95em;'>説明の日本語版</span></button>
+                </div>
+            </div>
+            <div id="dialog-content" style="display:none;"></div>
+            <button id="dialog-ok-btn" class="dialog-ok-btn" style="display:none;" onclick="closeDialog()">OK / 分かった</button>
+        </div>
+    </div>
+    <script>
+        function showDialog(lang) {
+            document.getElementById('dialog-select').style.display = 'none';
+            var content = document.getElementById('dialog-content');
+            var okBtn = document.getElementById('dialog-ok-btn');
+            if(lang === 'en') {
+                content.innerHTML = `<div class="dialog-content">
+Dear University Faculty,<br>
+Hello! I made this website with Copilot in my free time. All info here is true, and I’ll submit relevant documents to the Admissions Office as required. For questions or contact, reach me anytime at 1709691060@qq.com. Please don’t share this website’s link or content to protect my privacy.<br>
+Thanks sincerely!<br>
+(After closing this dialog, my email is also at the webpage bottom—feel free to contact me anytime!)<br>
+Sincerely,<br>
+ZHANG Yichao
+</div>`;
+                content.className = "dialog-content";
+            } else {
+                content.innerHTML = `<div class="dialog-content jp">
+尊敬する大学の先生方：<br>
+こんにちは。まず、本ウェブサイトをご覧いただき、ありがとうございます。本サイトは課外時間を活用し、Copilotを活用して作成させていただいたものであり、サイト内に記載されたすべての情報は、事実に基づくものであることを厳正に保証いたします。また、関連する証明文書等につきましては、大学からのご要求に従い、入学者選抜事務室へ確実に提出させていただきます。<br>
+もし先生方にご質問があります場合、または追加の情報をご要望の際は、いつでもメール（1709691060@qq.com）にてご連絡いただければ、速やかに対応させていただきます。この場を借りて、一つお願いがあります。私の個人情報及びプライバシーを保護するため、本サイトのリンクやサイト内の内容につきましては、ご配慮の上、他者への共有をご遠慮いただけますと幸いです。<br>
+何卒よろしくお願い申し上げます！<br>
+（なお、本ダイアログボックスを閉じた後にも、私のメールアドレスはウェブページの最下部に記載しております。いつでもご連絡をお待ちしております！）<br>
+敬具<br>
+張一超（ZHANG Yichao）
+</div>`;
+                content.className = "dialog-content jp";
+            }
+            content.style.display = '';
+            okBtn.style.display = '';
+        }
+        function closeDialog() {
+            document.getElementById('dialog-overlay').style.display = 'none';
+        }
+    </script>
+    <header>
+        <h1>Introduction to Student ZHANG Yichao</h1>
+        <h1>張一超（ZHANG Yichao）さんに関する紹介</h1>
+    </header>
+    <nav class="nav-bar">
+        <div class="nav-btn">
+            <a href="index.html">Introduction to Student ZHANG Yichao / 張一超（ZHANG Yichao）さんに関する紹介</a>
+        </div>
+        <div class="nav-btn">
+            <a href="Achievements.html">My Scientific Exploration Achievements / 私の科学探索業績</a>
+        </div>
+        <div class="nav-btn">
+            <a href="Aspirations-and-Plans.html">My Future Aspirations and Academic Plans / 私の未来への期待と学業計画</a>
+        </div>
+        <div class="nav-btn">
+            <a href="evaluations.html">Evaluations from My Teachers and Supervising Professors / 担当教員及び指導教授からの評価</a>
+        </div>
+    </nav>
+    <main>
+        <!-- Module 1 -->
+        <section>
+            <h2 class="module-title">My Educational Journey</h2>
+            <h2 class="module-title">私の学習経歴</h2>
+            <p>123456</p>
+        </section>
+        <!-- Module 2 -->
+        <section>
+            <h2 class="module-title">My Scientific Exploration Achievements</h2>
+            <h2 class="module-title">私の科学探索業績</h2>
+            <hr>
+            <small>
+                <a href="Achievements.html">To view more detailed materials, please click here</a>
+                or use the buttons at the top of the webpage to navigate to the corresponding page.
+            </small><br>
+            <small>
+                <a href="Achievements.html">より詳細な資料をご確認いただくには、こちらをクリック</a>
+                するか、ウェブページ上部のボタンから該当ページに移動してください。
+            </small>
+            <hr>
+            <p>123456</p>
+        </section>
+        <!-- Module 3 -->
+        <section>
+            <h2 class="module-title">My Future Aspirations and Academic Plans</h2>
+            <h2 class="module-title">私の未来への期待と学業計画</h2>
+            <hr>
+            <small>
+                <a href="Aspirations-and-Plans.html">To view more detailed materials, please click here</a>
+                or use the buttons at the top of the webpage to navigate to the corresponding page.
+            </small><br>
+            <small>
+                <a href="Aspirations-and-Plans.html">より詳細な資料をご確認いただくには、こちらをクリック</a>
+                するか、ウェブページ上部のボタンから該当ページに移動してください。
+            </small>
+            <hr>
+            <p>123456</p>
+        </section>
+        <!-- Module 4 -->
+        <section>
+            <h2 class="module-title">Evaluations from My Teachers and Supervising Professors</h2>
+            <h2 class="module-title">担当教員及び指導教授からの評価</h2>
+            <hr>
+            <small>
+                <a href="evaluations.html">To view more detailed materials, please click here</a>
+                or use the buttons at the top of the webpage to navigate to the corresponding page.
+            </small><br>
+            <small>
+                <a href="evaluations.html">より詳細な資料をご確認いただくには、こちらをクリック</a>
+                するか、ウェブページ上部のボタンから該当ページに移動してください。
+            </small>
+            <hr>
+            <p>123456</p>
+        </section>
+    </main>
+    <footer style="text-align:left;">
+        <p>Contact information: 1709691060@qq.com</p>
+        <p>連絡先情報: 1709691060@qq.com</p>
+        <p>&copy; 2025 ZHANG Yichao. All rights reserved.</p>
+    </footer>
+</body>
+</html>
