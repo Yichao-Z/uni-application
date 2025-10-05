@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZHANG Yichao</title>
+    <style>
+        body {
+            background-color: #cdeafe;
+            margin: 0;
+        }
+        
+        .fixed-header {
+            position: fixed; 
+            top: 0;
+            left: 0; 
+            right: 0;
+            z-index: 100; 
+            
+            background-color: #022740;
+            color: #cdeafe;
+      
+            border-bottom: 3px solid #159ef9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 10px 20px 15px;
+        }
+        
+        .title-container {
+            display: flex;
+            align-items: center; 
+            gap: 40px; 
+        }
+        
+        .title-container h1,
+        .title-container h4 {
+            margin: 0; 
+        }
+    
+        .title-container h4 {
+            color: #a8d4f3;
+            margin-bottom: 4px; 
+        }
+        
+        .content {
+            margin-top: 125px;
+            padding: 20px;
+            height: 2000px;
+        }
+
+        .nav-links {
+            margin-top: 15px;
+        }
+        
+        .nav-links a {
+            color: #cdeafe;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            color: #159ef9;
+        }
+
+        /* 下载按钮样式 */
+        .download-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* 所有区块通用样式 */
+        #summary, #experience, #interests, #plan, #Letters-of-Recommendation, #contact {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 50px;
+            scroll-margin-top: 125px;
+            padding-top: 20px;
+        }
+
+        /* 统一文本区域样式 */
+        .text h2 {
+            color: #0464a4;
+            margin-top: 0;
+        }
+        
+        .text h3 {
+            color: #159ef9;
+        }
+        
+        .text p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #022740;
+        }
+        
+        .photo-container {
+            flex: 0 0 auto; 
+        }
+        
+        .profile-photo {
+            width: 200px;
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="fixed-header">
+        <div class="title-container">
+            <h1>ZHANG Yichao 张一超</h1>
+            <h3>Welcome to my Resume Website!</h3>
+        </div>
+        <div class="nav-links">
+            <a href="#summary">Summary</a>
+            <a href="#experience">Experience</a>
+            <a href="#interests">Interests</a>
+            <a href="#plan">Plan</a>
+            <a href="#Letters-of-Recommendation">Letters of Recommendation</a>
+            <a href="#contact">Contact</a>
+            <a href="resume.pdf" class="download-btn" download>Download Resume</a>
+        </div>
+    </div>
+    
+    <div class="content">
+        <section id="summary">
+            <div class="photo-container">
+                <img src="Photo.jpg" alt="Photo" class="profile-photo">
+            </div>
+            
+            <div class="text">
+                <h2>ZHANG Yichao</h2>
+                <p>Born in 2007 in Hangzhou, China. </p>
+                <p>Currently enrolled at Hangzhou No.2 High School of Zhejiang Province, with expected graduation on July 1, 2026.</p>
+                <p>Selected for the "Youth Talent Program" (National Program for Cultivating Reserve Talents in Science, Technology and Innovation for High School Students) organized by the Ministry of Education and China Association for Science and Technology, hosted by Zhejiang University. 
+                    Awarded multiple competitive honors and received commendations from professors. (Advising Professor: HONG Xin) </p>
+                <p>Strongly interested in chemistry and biology. Aiming to pursue undergraduate studies at a leading Japanese university, with long-term goal of advancing scientific research through further academic training.</p>
+            </div>
+        </section>
+
+        <section id="experience">  
+            <div class="text">
+                <h2>My Experience</h2>
+                <h3>2024. Selected as chemistry track participant (one of only 13 in the province) in the Youth Talent Program.</h3>
+                <p>January. Commenced mentorship under Professor HONG Xin.</p>
+                <p>July. Awarded "Outstanding Camper" (one of two in chemistry) at the program's summer camp in ZHU Kezhen College, Zhejiang University</p>
+                <p>November. Participated in and represented the chemistry group at the cross-disciplinary project defense session.</p>
+                <p>November 29. Represented Zhejiang Province's chemistry trainees at the National Chemistry Forum conducted by University of Science and Technology of China.</p>
+                <a href="Research Report-Chinese.pdf" class="download-btn" download>Download Research Report</a>
+            </div>
+        </section>
+
+        <section id="interests">
+            <div class="text">
+                <h2>Interests</h2>
+                <p>I have a strong interest in chemistry and biology and am determined to pursue a career in scientific research in these fields. 
+                    Specifically, I am fascinated by studying genetic mechanisms, biochemical reactions at the microscopic level, and the applications of biosynthesis in pharmaceuticals and other areas. 
+                    Japan's advanced scientific research in these domains particularly attracts me to pursue higher education there.</p>
+                <p>Outside of academics, I enjoy activities such as table tennis, flying drones, and operating remote-controlled model aircraft. 
+                    I also have practical skills in website development—this portfolio site was entirely coded and built by myself.</p>
+            </div>
+        </section>
+
+        <section id="plan">
+            <div class="text">
+                <h2>Plan</h2>
+                <p>My overall plan is to pursue a bachelor's degree at a leading Japanese university, followed by master's and doctoral degrees in a related field. 
+                    Ultimately, I aim to engage in scientific research at a university or research institute.</p>
+                <p>During my undergraduate studies, I will dedicate myself to mastering all coursework and broadening my academic horizons. 
+                    Outside the classroom, I hope to work under the guidance of a supervisor to learn experimental techniques and participate in scientific research projects early on, gaining hands-on laboratory experience.</p>
+                <p>Additionally, throughout my time in Japan, I will consistently work on improving my Japanese and English language skills. 
+                    Before my undergraduate program formally begins, I also plan to learn essential computer and statistics knowledge, which I believe will be highly beneficial for my future studies and research.</p>
+            </div>
+        </section>
+
+        <section id="Letters-of-Recommendation">
+            <div class="text">
+                <h2>Letters of Recommendation</h2>
+                <!-- 这里可以添加推荐信相关内容 -->
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="text">
+                <h2>Contact</h2>
+                <h3>You can reach me by email at 1709691060@qq.com.</h3> 
+                <p>Welcome to inquire about any additional information you may require, and I will respond to the best of my ability.</p> 
+                <p>Thank you for visiting my website. I sincerely hope to be admitted to your university and am very eager to pursue my studies there. </p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
