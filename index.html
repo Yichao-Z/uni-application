@@ -4,102 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZHANG Yichao</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #cdeafe;
+        /* 基础样式重置 */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
+        /* 基础样式变量 */
+        :root {
+            --primary-dark: #0f4c81;
+            --primary-medium: #1e6091;
+            --primary-light: #3182ce;
+            --accent: #4299e1;
+            --accent-bright: #63b3ed;
+            --light-accent: #90cdf4;
+            --text-dark: #1a202c;
+            --text-medium: #4a5568;
+            --text-light: #f7fafc;
+            --bg-light: #f8fafc;
+            --bg-gradient: linear-gradient(120deg, #f8fafc 0%, #edf2f7 100%);
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            background: var(--bg-gradient);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding-top: 0 !important;
+        }
+        
+        /* 固定头部 - 响应式设计核心 */
         .fixed-header {
             position: fixed; 
             top: 0;
             left: 0; 
             right: 0;
-            z-index: 100; 
-            
-            background-color: #022740;
-            color: #cdeafe;
-      
-            border-bottom: 3px solid #159ef9;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            padding: 10px 20px 15px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--accent), var(--accent-bright)) 1;
+            box-shadow: var(--shadow);
+            padding: 10px 5%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: var(--transition-slow);
+        }
+        
+        .fixed-header.scrolled {
+            height: 85px;
+            padding: 5px 5%;
+            background: linear-gradient(135deg, rgba(15, 76, 129, 0.98), rgba(30, 96, 145, 0.98));
+            box-shadow: var(--shadow-strong);
+            backdrop-filter: blur(5px);
         }
         
         .title-container {
             display: flex;
             align-items: center; 
-            gap: 40px; 
+            gap: clamp(10px, 3vw, 20px);
+            position: relative;
+            margin-bottom: 8px;
         }
         
+        .title-container::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-bright), var(--light-accent));
+            border-radius: 3px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .fixed-header.scrolled .title-container::after {
+            opacity: 1;
+        }
+        
+        /* 欢迎语文字渐变样式 */
         .title-container h1,
-        .title-container h4 {
+        .title-container h3 {
             margin: 0; 
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
         }
     
-        .title-container h4 {
-            color: #a8d4f3;
-            margin-bottom: 4px; 
+        .title-container h1 {
+            font-size: clamp(1.3rem, 3vw, 1.5rem);
+            background-image: linear-gradient(90deg, var(--text-light), var(--light-accent));
         }
         
-        .content {
-            margin-top: 125px;
-            padding: 20px;
-            height: 2000px;
+        .title-container h3 {
+            font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            background-image: linear-gradient(90deg, var(--accent), var(--light-accent));
+            opacity: 0.9;
         }
-
+        
+        /* 导航区域 - 响应式调整 */
+        .nav-container {
+            margin-top: 5px;
+            position: relative;
+        }
+        
         .nav-links {
-            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .nav-links a {
-            color: #cdeafe;
-            margin-right: 20px;
+            color: var(--text-light);
             text-decoration: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2vw, 0.9rem);
+            transition: var(--transition);
         }
         
         .nav-links a:hover {
-            color: #159ef9;
+            color: var(--light-accent);
         }
 
-        /* 下载按钮样式 */
+        /* 下载按钮 - 适配不同设备 */
         .download-btn {
-            background-color: #3498db;
-            color: white;
-            padding: 6px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+            background-size: 300% 300%;
+            color: white !important;
+            padding: 6px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition-slow);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            animation: gradientShift 6s ease infinite;
         }
         
-        .download-btn:hover {
-            background-color: #2980b9;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* 所有区块通用样式 */
-        #summary, #experience, #interests, #plan, #Letters-of-Recommendation, #contact {
+        /* 内容区域 - 响应式布局 */
+        .content {
+            margin-top: 100px;
+            padding: 30px 5%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 区块样式 - 响应式调整 */
+        section {
             display: flex;
+            flex-direction: row;
             align-items: flex-start;
-            gap: 30px;
-            margin-bottom: 50px;
-            scroll-margin-top: 125px;
-            padding-top: 20px;
+            gap: clamp(20px, 5vw, 35px);
+            margin-bottom: 80px;
+            scroll-margin-top: 110px;
+            padding: clamp(20px, 5vw, 35px);
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* 统一文本区域样式 */
+        /* 文本区域 - 响应式字体 */
         .text h2 {
-            color: #0464a4;
             margin-top: 0;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, var(--accent), transparent) 1;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .text h3 {
-            color: #159ef9;
+            color: var(--primary-medium);
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin: 22px 0 15px;
         }
         
         .text p {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #022740;
+            font-size: clamp(15px, 3vw, 16px);
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin-bottom: 18px;
         }
         
         .photo-container {
@@ -107,35 +239,190 @@
         }
         
         .profile-photo {
-            width: 200px;
+            width: 240px;
             height: auto; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+            border-radius: 16px; 
+            box-shadow: var(--shadow);
+            border: 7px solid var(--white);
+            transition: var(--transition-slow);
         }
         
+        .profile-photo:hover {
+            transform: scale(1.06) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 汉堡菜单 - 仅在移动设备显示 */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.6rem;
+            cursor: pointer;
+            position: absolute;
+            top: 25px;
+            right: 5%;
+            z-index: 1010;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .menu-toggle:hover {
+            transform: rotate(90deg);
+            color: var(--light-accent);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* 平板设备响应式调整 (768px以下) */
+        @media (max-width: 768px) {
+            .fixed-header {
+                height: 120px;
+                padding: 10px 5%;
+                position: relative; /* 确保子元素定位正确 */
+            }
+            
+            .fixed-header.scrolled {
+                height: 105px;
+            }
+            
+            .title-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                padding-right: 50px;
+            }
+            
+            /* 确保移动设备上按钮可见并可点击 */
+            .menu-toggle {
+                display: flex;
+                /* 确保按钮在最上层，可点击 */
+                z-index: 1020;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(180deg, rgba(15, 76, 129, 0.98), rgba(30, 96, 145, 0.98));
+                padding: 15px;
+                margin: 0;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+                z-index: 1010;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+            }
+            
+            /* 激活状态时显示菜单并设置高度 */
+            .nav-links.active {
+                display: flex;
+                max-height: 500px; /* 足够容纳所有导航项 */
+                animation: fadeIn 0.4s ease;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .content {
+                margin-top: 120px;
+                padding: 25px 5%;
+            }
+            
+            section {
+                flex-direction: column;
+                gap: 30px;
+                scroll-margin-top: 130px;
+            }
+            
+            .photo-container {
+                text-align: center;
+                width: 100%;
+            }
+            
+            .profile-photo {
+                width: 65%;
+                max-width: 240px;
+                margin: 0 auto;
+            }
+        }
+
+        /* 手机设备响应式调整 (480px以下) */
+        @media (max-width: 480px) {
+            .fixed-header {
+                height: 110px;
+            }
+            
+            .fixed-header.scrolled {
+                height: 95px;
+            }
+            
+            .content {
+                margin-top: 110px;
+            }
+            
+            section {
+                scroll-margin-top: 120px;
+                padding: 20px 5%;
+            }
+            
+            .profile-photo {
+                width: 75%;
+            }
+            
+            .download-btn {
+                padding: 5px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
-    <div class="fixed-header">
+    <!-- 固定头部区域 -->
+    <div class="fixed-header" id="fixedHeader">
         <div class="title-container">
             <h1>ZHANG Yichao 张一超</h1>
             <h3>Welcome to my Resume Website!</h3>
         </div>
-        <div class="nav-links">
-            <a href="#summary">Summary</a>
-            <a href="#experience">Experience</a>
-            <a href="#interests">Interests</a>
-            <a href="#plan">Plan</a>
-            <a href="#Letters-of-Recommendation">Letters of Recommendation</a>
-            <a href="#contact">Contact</a>
-            <a href="resume.pdf" class="download-btn" download>Download Resume</a>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-container">
+            <div class="nav-links" id="navLinks">
+                <a href="#summary">Summary</a>
+                <a href="#experience">Experience</a>
+                <a href="#interests">Interests</a>
+                <a href="#plan">Plan</a>
+                <a href="#Letters-of-Recommendation">Letters</a>
+                <a href="#contact">Contact</a>
+                <a href="resume.pdf" class="download-btn" download>
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
         </div>
     </div>
     
+    <!-- 主内容区域 -->
     <div class="content">
         <section id="summary">
             <div class="photo-container">
-                <img src="Photo.jpg" alt="Photo" class="profile-photo">
+                <img src="Photo.jpg" alt="Zhang Yichao's profile photo" class="profile-photo">
             </div>
             
             <div class="text">
@@ -156,7 +443,9 @@
                 <p>July. Awarded "Outstanding Camper" (one of two in chemistry) at the program's summer camp in ZHU Kezhen College, Zhejiang University</p>
                 <p>November. Participated in and represented the chemistry group at the cross-disciplinary project defense session.</p>
                 <p>November 29. Represented Zhejiang Province's chemistry trainees at the National Chemistry Forum conducted by University of Science and Technology of China.</p>
-                <a href="Research Report-Chinese.pdf" class="download-btn" download>Download Research Report</a>
+                <a href="Research Report-Chinese.pdf" class="download-btn" download>
+                    <i class="fas fa-file-pdf"></i> Download Research Report
+                </a>
             </div>
         </section>
 
@@ -199,5 +488,101 @@
             </div>
         </section>
     </div>
+
+    <script>
+        // 核心响应式交互逻辑
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const header = document.getElementById('fixedHeader');
+        const content = document.querySelector('.content');
+        const sections = document.querySelectorAll('section');
+        
+        // 确保DOM加载完成后绑定事件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 动态调整内容区域间距，适配不同设备头部高度
+            function adjustContentMargin() {
+                const headerHeight = header.offsetHeight;
+                content.style.marginTop = `${headerHeight}px`;
+                
+                // 调整滚动锚点，确保导航跳转准确
+                sections.forEach(section => {
+                    section.style.scrollMarginTop = `${headerHeight + 10}px`;
+                });
+            }
+            
+            // 检查元素可见性，触发动画
+            function checkVisibility() {
+                const windowHeight = window.innerHeight;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    
+                    // 元素顶部进入视口80%时触发动画
+                    if (sectionTop < windowHeight * 0.8) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+            
+            // 初始化设置
+            adjustContentMargin();
+            checkVisibility();
+            
+            // 窗口大小变化时重新计算布局
+            window.addEventListener('resize', () => {
+                adjustContentMargin();
+                checkVisibility();
+            });
+            
+            // 汉堡菜单交互（移动设备）- 修复核心
+            menuToggle.addEventListener('click', function() {
+                // 切换菜单显示状态
+                navLinks.classList.toggle('active');
+                
+                // 切换图标
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    // 移动端菜单展开时调整内容区域间距
+                    if (window.innerWidth <= 768) {
+                        content.style.marginTop = `${header.offsetHeight + navLinks.offsetHeight}px`;
+                        checkVisibility();
+                    }
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    // 菜单收起时恢复间距
+                    adjustContentMargin();
+                }
+            });
+
+            // 滚动时导航栏样式变化和可见性检查
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                adjustContentMargin();
+                checkVisibility();
+            });
+
+            // 点击导航链接后关闭菜单（移动设备）
+            const navItems = navLinks.querySelectorAll('a');
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        adjustContentMargin();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
